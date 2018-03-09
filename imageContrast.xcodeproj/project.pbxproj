@@ -12,7 +12,19 @@
 		7789644F204F735000458253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7789644E204F735000458253 /* Assets.xcassets */; };
 		77896452204F735000458253 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77896450204F735000458253 /* Main.storyboard */; };
 		77896455204F735000458253 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77896454204F735000458253 /* main.m */; };
+		77896463204F73C700458253 /* VVEXFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 77896462204F73C700458253 /* VVEXFileSearch.m */; };
+		77F91FE92051346C001C4F18 /* imageContrastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F91FE82051346C001C4F18 /* imageContrastTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		77F91FEB2051346C001C4F18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7789643D204F735000458253 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77896444204F735000458253;
+			remoteInfo = imageContrast;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		77896445204F735000458253 /* imageContrast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imageContrast.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -25,10 +37,22 @@
 		77896453204F735000458253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77896454204F735000458253 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77896456204F735000458253 /* imageContrast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = imageContrast.entitlements; sourceTree = "<group>"; };
+		77896461204F73C700458253 /* VVEXFileSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVEXFileSearch.h; sourceTree = "<group>"; };
+		77896462204F73C700458253 /* VVEXFileSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVEXFileSearch.m; sourceTree = "<group>"; };
+		77F91FE62051346C001C4F18 /* imageContrastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imageContrastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77F91FE82051346C001C4F18 /* imageContrastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = imageContrastTests.m; sourceTree = "<group>"; };
+		77F91FEA2051346C001C4F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		77896442204F735000458253 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77F91FE32051346C001C4F18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				77896447204F735000458253 /* imageContrast */,
+				77F91FE72051346C001C4F18 /* imageContrastTests */,
 				77896446204F735000458253 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				77896445204F735000458253 /* imageContrast.app */,
+				77F91FE62051346C001C4F18 /* imageContrastTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,6 +83,7 @@
 		77896447204F735000458253 /* imageContrast */ = {
 			isa = PBXGroup;
 			children = (
+				77896460204F73C700458253 /* Common */,
 				77896448204F735000458253 /* AppDelegate.h */,
 				77896449204F735000458253 /* AppDelegate.m */,
 				7789644B204F735000458253 /* ViewController.h */,
@@ -68,6 +95,24 @@
 				77896456204F735000458253 /* imageContrast.entitlements */,
 			);
 			path = imageContrast;
+			sourceTree = "<group>";
+		};
+		77896460204F73C700458253 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				77896461204F73C700458253 /* VVEXFileSearch.h */,
+				77896462204F73C700458253 /* VVEXFileSearch.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		77F91FE72051346C001C4F18 /* imageContrastTests */ = {
+			isa = PBXGroup;
+			children = (
+				77F91FE82051346C001C4F18 /* imageContrastTests.m */,
+				77F91FEA2051346C001C4F18 /* Info.plist */,
+			);
+			path = imageContrastTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,18 +135,42 @@
 			productReference = 77896445204F735000458253 /* imageContrast.app */;
 			productType = "com.apple.product-type.application";
 		};
+		77F91FE52051346C001C4F18 /* imageContrastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77F91FEF2051346C001C4F18 /* Build configuration list for PBXNativeTarget "imageContrastTests" */;
+			buildPhases = (
+				77F91FE22051346C001C4F18 /* Sources */,
+				77F91FE32051346C001C4F18 /* Frameworks */,
+				77F91FE42051346C001C4F18 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77F91FEC2051346C001C4F18 /* PBXTargetDependency */,
+			);
+			name = imageContrastTests;
+			productName = imageContrastTests;
+			productReference = 77F91FE62051346C001C4F18 /* imageContrastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7789643D204F735000458253 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = VVEX;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = vvex;
 				TargetAttributes = {
 					77896444204F735000458253 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					77F91FE52051346C001C4F18 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 77896444204F735000458253;
 					};
 				};
 			};
@@ -119,6 +188,7 @@
 			projectRoot = "";
 			targets = (
 				77896444204F735000458253 /* imageContrast */,
+				77F91FE52051346C001C4F18 /* imageContrastTests */,
 			);
 		};
 /* End PBXProject section */
@@ -133,6 +203,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		77F91FE42051346C001C4F18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -141,12 +218,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				7789644D204F735000458253 /* ViewController.m in Sources */,
+				77896463204F73C700458253 /* VVEXFileSearch.m in Sources */,
 				77896455204F735000458253 /* main.m in Sources */,
 				7789644A204F735000458253 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		77F91FE22051346C001C4F18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77F91FE92051346C001C4F18 /* imageContrastTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77F91FEC2051346C001C4F18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77896444204F735000458253 /* imageContrast */;
+			targetProxy = 77F91FEB2051346C001C4F18 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		77896450204F735000458253 /* Main.storyboard */ = {
@@ -273,6 +367,7 @@
 				DEVELOPMENT_TEAM = 22K7BEPQEH;
 				INFOPLIST_FILE = imageContrast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = vvex.zb.com.imageContrast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -288,8 +383,39 @@
 				DEVELOPMENT_TEAM = 22K7BEPQEH;
 				INFOPLIST_FILE = imageContrast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = vvex.zb.com.imageContrast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		77F91FED2051346C001C4F18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 22K7BEPQEH;
+				INFOPLIST_FILE = imageContrastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vvex.zb.com.imageContrastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/imageContrast.app/Contents/MacOS/imageContrast";
+			};
+			name = Debug;
+		};
+		77F91FEE2051346C001C4F18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 22K7BEPQEH;
+				INFOPLIST_FILE = imageContrastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vvex.zb.com.imageContrastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/imageContrast.app/Contents/MacOS/imageContrast";
 			};
 			name = Release;
 		};
@@ -310,6 +436,15 @@
 			buildConfigurations = (
 				7789645A204F735000458253 /* Debug */,
 				7789645B204F735000458253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77F91FEF2051346C001C4F18 /* Build configuration list for PBXNativeTarget "imageContrastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77F91FED2051346C001C4F18 /* Debug */,
+				77F91FEE2051346C001C4F18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
