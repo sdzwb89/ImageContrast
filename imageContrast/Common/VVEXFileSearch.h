@@ -20,4 +20,11 @@
  */
 - (void)showAllFileWithPath:(NSString *)path withSuffix:(NSString *)suffix;
 
+/**
+ 递归选取所有的图片
+
+ @param path 需查找的图片
+ */
+- (void)showAllPiceFileWithPath:(NSString *)path;
+
 @end

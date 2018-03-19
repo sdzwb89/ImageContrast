@@ -38,6 +38,27 @@
 - (void)testSearchFiles {
 
     [self.fileSearch showAllFileWithPath:@"/Users/zhangbin/Documents/Project/Allinmd/2.0/AllinmdIPhone" withSuffix:@".png"];
+    
+    NSData *da = [NSData dataWithContentsOfFile:@"/Users/zhangbin/Documents/Project/Allinmd/2.0/AllinmdIPhone/AllinmdIPhone/Reader/Image/Reader_Back.svg"];
+    
+    NSData *da2 = [NSData dataWithContentsOfFile:@"/Users/zhangbin/Documents/Project/Allinmd/2.0/AllinmdIPhone/AllinmdIPhone/Reader/Image/Reader_Back.svg"];
+    
+    if ([da isEqualTo:da2]) {
+        NSLog(@"======");
+    } else {
+        NSLog(@"-------");
+    }
+    
+//    NSImage *image1 = [[NSImage alloc] initWithContentsOfFile:@"/Users/zhangbin/Documents/Project/Allinmd/2.0/AllinmdIPhone/AllinmdIPhone/Reader/Image/Reader_Back.svg"];
+//    NSImage *image2 = [[NSImage alloc] initWithContentsOfFile:@"/Users/zhangbin/Documents/Project/Allinmd/2.0/AllinmdIPhone/AllinmdIPhone/Reader/Image/Reader_Back.svg"];
+//    NSData *data1 = [image1 TIFFRepresentation];
+//    NSData *data2 = [image2 TIFFRepresentation];
+//    if ([data1 isEqual:data2]) {
+//        NSLog(@"一样");
+//    } else {
+//        NSLog(@"不同");
+//    }
+    
     XCTAssertTrue(self.fileSearch.mArray.count > 0, @"查不到图片");
 }
 

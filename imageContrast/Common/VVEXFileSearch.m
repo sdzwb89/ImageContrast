@@ -66,6 +66,36 @@
     }
 }
 
+
+//递归读取解压路径下的所有@2x.png文件
+- (void)showAllPiceFileWithPath:(NSString *)path {
+    NSFileManager * fileManger = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    BOOL isExist = [fileManger fileExistsAtPath:path isDirectory:&isDir];
+    if (isExist) {
+        if (isDir) {
+            NSArray * dirArray = [fileManger contentsOfDirectoryAtPath:path error:nil];
+            NSString * subPath = nil;
+            for (NSString * str in dirArray) {
+                subPath  = [path stringByAppendingPathComponent:str];
+                BOOL issubDir = NO;
+                [fileManger fileExistsAtPath:subPath isDirectory:&issubDir];
+                [self showAllPiceFileWithPath:subPath];
+            }
+        }else{
+            NSString *fileName = [[path componentsSeparatedByString:@"/"] lastObject];
+            if ([fileName hasSuffix:@".png"]
+                || [fileName hasSuffix:@".svg"]
+                || [fileName hasSuffix:@".jpg"]
+                ) {
+                [self.mArray addObject:path];
+            }
+        }
+    }else{
+        NSLog(@"this path is not exist!");
+    }
+}
+
 - (NSMutableArray *)mArray {
     
     if (!_mArray) {

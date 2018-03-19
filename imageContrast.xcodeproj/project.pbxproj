@@ -13,6 +13,8 @@
 		77896452204F735000458253 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77896450204F735000458253 /* Main.storyboard */; };
 		77896455204F735000458253 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77896454204F735000458253 /* main.m */; };
 		77896463204F73C700458253 /* VVEXFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 77896462204F73C700458253 /* VVEXFileSearch.m */; };
+		77AD14152056724C002CC946 /* VVEXReslutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD14132056724C002CC946 /* VVEXReslutViewController.m */; };
+		77AD14162056724C002CC946 /* VVEXReslutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AD14142056724C002CC946 /* VVEXReslutViewController.xib */; };
 		77F91FE92051346C001C4F18 /* imageContrastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F91FE82051346C001C4F18 /* imageContrastTests.m */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,9 @@
 		77896456204F735000458253 /* imageContrast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = imageContrast.entitlements; sourceTree = "<group>"; };
 		77896461204F73C700458253 /* VVEXFileSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVEXFileSearch.h; sourceTree = "<group>"; };
 		77896462204F73C700458253 /* VVEXFileSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVEXFileSearch.m; sourceTree = "<group>"; };
+		77AD14122056724C002CC946 /* VVEXReslutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVEXReslutViewController.h; sourceTree = "<group>"; };
+		77AD14132056724C002CC946 /* VVEXReslutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVEXReslutViewController.m; sourceTree = "<group>"; };
+		77AD14142056724C002CC946 /* VVEXReslutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VVEXReslutViewController.xib; sourceTree = "<group>"; };
 		77F91FE62051346C001C4F18 /* imageContrastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imageContrastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F91FE82051346C001C4F18 /* imageContrastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = imageContrastTests.m; sourceTree = "<group>"; };
 		77F91FEA2051346C001C4F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +98,9 @@
 				77896453204F735000458253 /* Info.plist */,
 				77896454204F735000458253 /* main.m */,
 				77896456204F735000458253 /* imageContrast.entitlements */,
+				77AD14122056724C002CC946 /* VVEXReslutViewController.h */,
+				77AD14132056724C002CC946 /* VVEXReslutViewController.m */,
+				77AD14142056724C002CC946 /* VVEXReslutViewController.xib */,
 			);
 			path = imageContrast;
 			sourceTree = "<group>";
@@ -199,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7789644F204F735000458253 /* Assets.xcassets in Resources */,
+				77AD14162056724C002CC946 /* VVEXReslutViewController.xib in Resources */,
 				77896452204F735000458253 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +230,7 @@
 				77896463204F73C700458253 /* VVEXFileSearch.m in Sources */,
 				77896455204F735000458253 /* main.m in Sources */,
 				7789644A204F735000458253 /* AppDelegate.m in Sources */,
+				77AD14152056724C002CC946 /* VVEXReslutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

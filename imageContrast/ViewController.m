@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import "VVEXFileSearch.h"
 
+#import "VVEXReslutViewController.h"
+
+
 @interface ViewController()
 <NSTableViewDelegate,
 NSTableViewDataSource>
@@ -26,6 +29,7 @@ NSTableViewDataSource>
 
 @property (nonatomic, strong) NSArray *pathArray1;
 @property (nonatomic, strong) NSArray *pathArray2;
+@property (nonatomic, strong) NSArray *pathAllArray;
 
 @property (weak) IBOutlet NSProgressIndicator *process1;
 
@@ -34,6 +38,9 @@ NSTableViewDataSource>
 @property (weak) IBOutlet NSButton *search2;
 @property (weak) IBOutlet NSButton *contrast1;
 @property (weak) IBOutlet NSButton *contrast2;
+
+@property (weak) IBOutlet NSButton *searchAll;
+@property (nonatomic, assign) BOOL isAll;
 
 @end
 
@@ -55,6 +62,17 @@ NSTableViewDataSource>
     self.process1.controlSize = NSControlSizeRegular;
     self.process1.indeterminate = YES;
     [self.process1 sizeToFit];
+    
+    [self.tableView1 setDoubleAction:@selector(tableViewDoubleClick:)];
+}
+
+- (void)tableViewDoubleClick:(NSTableView *)tableView {
+
+    NSInteger row = [tableView selectedRow];
+    NSLog(@"%@",self.pathArray1[row]);
+    NSLog(@"%@",tableView);
+    NSString *filePath = self.pathArray1[row];
+    [[NSWorkspace sharedWorkspace] openFile:filePath];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -63,6 +81,17 @@ NSTableViewDataSource>
     // Update the view, if already loaded.
 }
 
+- (IBAction)searchAllPic:(NSButton *)sender {
+    
+    VVEXFileSearch *search = [VVEXFileSearch new];
+    [search showAllPiceFileWithPath:self.pathLabel.stringValue];
+    self.pathAllArray = search.mArray.copy;
+    NSTableColumn *colu = [[self.tableView1 tableColumns] firstObject];
+    colu.title = [NSString stringWithFormat:@"共查到%zd张图片",self.pathAllArray.count];
+    self.isAll = YES;
+    [self.tableView1 reloadData];
+    self.contrast1.enabled = self.pathArray1.count > 0;
+}
 
 - (IBAction)searchPNG:(NSButton *)sender {
     
@@ -81,6 +110,7 @@ NSTableViewDataSource>
         self.pathArray1 = search.mArray.copy;
         NSTableColumn *colu = [[self.tableView1 tableColumns] firstObject];
         colu.title = [NSString stringWithFormat:@"共查到%zd张图片",self.pathArray1.count];
+        self.isAll = NO;
         [self.tableView1 reloadData];
         self.contrast1.enabled = self.pathArray1.count > 0;
     }else{
@@ -115,6 +145,7 @@ NSTableViewDataSource>
             if (sender.tag == 100) {
                 weakSelf.pathLabel.stringValue = pathString;
                 weakSelf.search1.enabled = YES;
+                weakSelf.searchAll.enabled = YES;
             } else {
                 weakSelf.pathLabel2.stringValue = pathString;
                 weakSelf.search2.enabled = YES;
@@ -156,10 +187,24 @@ NSTableViewDataSource>
             for (int i = 0; i < self.pathArray1.count; ++i) {
                 for (int j = i + 1; j < self.pathArray1.count; ++j) {
                     @autoreleasepool {
-                        NSImage *image1 = [[NSImage alloc] initWithContentsOfFile:self.pathArray1[i]];
-                        NSImage *image2 = [[NSImage alloc] initWithContentsOfFile:self.pathArray1[j]];
-                        NSData *data1 = [image1 TIFFRepresentation];
-                        NSData *data2 = [image2 TIFFRepresentation];
+                        NSString *pathString = self.pathArray1[i];
+                        NSString *pathString2 = self.pathArray1[j];
+                        NSData *data1;
+                        NSData *data2;
+                        if ([pathString hasPrefix:@".svg"]) {
+                            data1 = [NSData dataWithContentsOfFile:pathString];
+                        } else {
+                            NSImage *image1 = [[NSImage alloc] initWithContentsOfFile:self.pathArray1[i]];
+                            data1 = [image1 TIFFRepresentation];
+                        }
+                        
+                        if ([pathString2 hasPrefix:@".svg"]) {
+                            data2 = [NSData dataWithContentsOfFile:pathString2];
+                        } else {
+                            NSImage *image2 = [[NSImage alloc] initWithContentsOfFile:self.pathArray1[j]];
+                            data2 = [image2 TIFFRepresentation];
+                        }
+                        
                         if ([data1 isEqual:data2]) {
                             NSString *str = [NSString stringWithFormat:@"%@\nAND\n%@\n一样\n",self.pathArray1[i],self.pathArray1[j]];
                             NSLog(@"%@\n",str);
@@ -193,6 +238,7 @@ NSTableViewDataSource>
                 [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
                     NSLog(@"END!");
                     weakSelf.textField.stringValue = filePath;
+                    [[NSWorkspace sharedWorkspace] openFile:filePath];
                 }];
             });
         } else if (tag == 600) {
@@ -227,6 +273,7 @@ NSTableViewDataSource>
                         message = @"创建文件失败！";
                     }
                 }
+ 
                 NSAlert *alert = [[NSAlert alloc]init];
                 [alert addButtonWithTitle:@"OK"];
                 [alert setMessageText:@"对比完成！"];
@@ -235,6 +282,7 @@ NSTableViewDataSource>
                 [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
                     NSLog(@"END!");
                     weakSelf.textField.stringValue = filePath;
+                    [[NSWorkspace sharedWorkspace] openFile:filePath];
                 }];
             });
         }
@@ -248,6 +296,9 @@ NSTableViewDataSource>
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
   
     if (tableView.tag == 10000) {
+        if (self.isAll) {
+            return self.pathAllArray.count;
+        }
         return self.pathArray1.count;
     } else if (tableView.tag == 20000) {
         return self.pathArray2.count;
@@ -257,12 +308,59 @@ NSTableViewDataSource>
     
 }
 
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    
+    if (tableView.tag == 10000) {
+        if (self.isAll) {
+            return self.pathAllArray[row];
+        }else {
+            return self.pathArray1[row];
+        }
+    } else {
+        return self.pathArray2[row];
+    }
+}
+
+//设置鼠标悬停在cell上显示的提示文本
+- (NSString *)tableView:(NSTableView *)tableView toolTipForCell:(NSCell *)cell rect:(NSRectPointer)rect tableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row mouseLocation:(NSPoint)mouseLocation {
+    
+    if (tableView.tag == 10000) {
+        if (self.isAll) {
+            return self.pathAllArray[row];
+        } else {
+            return self.pathArray1[row];
+        }
+    } else {
+        return self.pathArray2[row];
+    }
+}
+
+//当列表长度无法展示完整某行数据时 当鼠标悬停在此行上 是否扩展显示
+- (BOOL)tableView:(NSTableView *)tableView shouldShowCellExpansionForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
+    return YES;
+}
+
+/*
+ 当用户通过键盘或鼠标将要选中某行时，返回设置要选中的行
+ 如果实现了这个方法，上面一个方法将不会被调用
+ */
+//- (NSIndexSet *)tableView:(NSTableView *)tableView selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes {
+//
+//    NSLog(@"%@",proposedSelectionIndexes);
+//    return proposedSelectionIndexes;
+//}
+
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     
     NSTableCellView *cell = [tableView makeViewWithIdentifier:@"PathCellID" owner:self];
+    cell.textField.stringValue = @"";
     NSString *pathString;
     if (tableView.tag == 10000) {
-        pathString = self.pathArray1[row];
+        if (self.isAll) {
+            pathString = self.pathAllArray[row];
+        } else {
+            pathString = self.pathArray1[row];
+        }
     } else if(tableView.tag == 20000) {
         pathString = self.pathArray2[row];
     } else {
@@ -282,7 +380,7 @@ NSTableViewDataSource>
     return _result1;
 }
 
--(NSMutableArray *)result2 {
+- (NSMutableArray *)result2 {
     
     if (!_result2) {
         _result2 = [NSMutableArray array];
